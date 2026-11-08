@@ -328,7 +328,7 @@ TOOLS = (
               "note_body": {"type": "string"}, "day": {"type": "string"},
               "note_mode": {"type": "string", "enum": ["append", "replace"], "default": "append"}}, ()), _h_propose),
     (_schema("jw3_execute", "Open a position via execute_trade." + _EXEC_DESC_SUFFIX + " Size in base units (one KuCoin futures contract = multiplier base units — check before firing).",
-             {"exchange": _EXCHANGE, "pair": _PAIR, "side": {"type": "string", "enum": ["long", "short"]},
+             {"exchange": _EXCHANGE, "pair": _PAIR, "side": {"type": "string", "enum": ["buy", "sell"], "description": "buy opens a long (or closes a short); sell mirrors."},
               "amount": {"type": "number", "description": "Size in BASE units."},
               "risk_usd": {"type": "number"}, "price": {"type": "number"},
               "market": {"type": "boolean", "default": False},
