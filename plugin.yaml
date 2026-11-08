@@ -1,0 +1,28 @@
+name: jw3
+label: JW3.ai trading
+kind: standalone
+version: 1.0.0
+description: Trade crypto through JW3.ai from Hermes — market reads, JEV analysis, Diary proposals, and gated execution via the jw3 CLI.
+author: agnostic4321-ops
+homepage: https://github.com/agnostic4321-ops/jw3_ai
+license: MIT
+requires_hermes: ">=0.22.5"
+provides_tools:
+  - jw3_market
+  - jw3_screener
+  - jw3_positions
+  - jw3_balances
+  - jw3_orders
+  - jw3_fills
+  - jw3_pnl
+  - jw3_klines
+  - jw3_analyze
+  - jw3_risk
+  - jw3_scan
+  - jw3_diary
+  - jw3_propose
+  - jw3_execute
+  - jw3_close
+  - jw3_exits
+  - jw3_cancel
+provides_hooks: []
