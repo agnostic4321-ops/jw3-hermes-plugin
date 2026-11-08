@@ -1,5 +1,7 @@
 # jw3 Hermes plugin
 
+![JW3](assets/jw3-icon.svg)
+
 JW3.ai trading inside Hermes Agent: 17 non-custodial tools, the `jw3-ops`
 skill, and a `/jw3-status` slash command — all thin wrappers over the `jw3`
 CLI (`@jw3/cli`), which owns the PAT and enforces every server-side gate
