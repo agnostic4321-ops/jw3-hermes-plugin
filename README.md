@@ -1,5 +1,7 @@
 # jw3 Hermes plugin
 
+[![skills.sh](https://skills.sh/b/agnostic4321-ops/jw3-hermes-plugin)](https://skills.sh/agnostic4321-ops/jw3-hermes-plugin)
+
 ![JW3](assets/jw3-icon.svg)
 
 JW3.ai trading inside Hermes Agent: 17 non-custodial tools, the `jw3-ops`
