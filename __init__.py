@@ -9,7 +9,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from .tools import TOOLS, TOOLSET, check_jw3_available, run_jw3
+from .tools import TOOLS, TOOLSET, check_jw3_available, pre_tool_call_hook, run_jw3
 
 
 def _status_handler(raw_args: str = "", **kwargs) -> str:
@@ -50,3 +50,4 @@ def register(ctx) -> None:
         _status_handler,
         description="Show JW3 open positions and risk/kill-switch status.",
     )
+    ctx.register_hook("pre_tool_call", pre_tool_call_hook)

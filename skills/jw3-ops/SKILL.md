@@ -1,7 +1,7 @@
 ---
 name: jw3-ops
 description: Trade crypto through JW3.ai safely from Hermes.
-version: 1.0.0
+version: 1.1.0
 author: agnostic4321-ops, Hermes Agent
 license: MIT
 platforms: [linux, macos]
@@ -27,9 +27,11 @@ propose, execute, close, or manage exits on a trade. Do not hand-roll
 - Authenticated via `jw3 auth login --browser` (default scope
   `mcp:read trade:propose`; fund-moving needs `trade:execute` + kill
   switch OFF + autonomy `full`/`ask_above_threshold`).
-- Ground truth lives in `~/Desktop/jw3-mcp-cli/`: CLI source
-  `cli/src/commands/`, MCP contract `edge-functions/mcp-server/tools.ts`
-  (26 tools), shared gates `edge-functions/_shared/`.
+- Ground truth lives in the public repo
+  https://github.com/agnostic4321-ops/jw3-mcp-cli: CLI source
+  `cli/src/commands/`, MCP contract
+  `edge-functions/mcp-server/tools.ts`, server gates under
+  `edge-functions/mcp-server/`.
 
 ## How to Run
 
@@ -56,8 +58,14 @@ fund-moving, `jw3_orders` before every new entry.
 
 - Reads freely. Fund-moving tools (`jw3_execute`, `jw3_close`,
   `jw3_exits`, `jw3_cancel`) run the CLI dry run and send ZERO bytes
-  unless `confirm=true` — pass it only with explicit per-trade user
-  approval. A CLI confirm never overrides a server no.
+  unless `confirm=true`. A strictly-true `confirm` (boolean `true` or the
+  string `"true"` — anything else, including `"false"`, is a dry run)
+  raises a Hermes human-approval prompt showing the exact ticket
+  (action, side, size, pair, venue, full `jw3 ... --yes` command). The
+  live call fires only after a human approves that exact call — edited
+  args need a fresh approval — and unattended runs (cron, headless
+  `-q`, no approval bridge) are refused per the user approval mode.
+  A CLI confirm never overrides a server no.
 - Never print or paste PATs; never commit them. Quote figures only from
   `jw3_pnl` (the venue ledger is the book of record; live reads carry
   uPnL and mid-session drift).
@@ -76,8 +84,8 @@ fund-moving, `jw3_orders` before every new entry.
 ## Pitfalls
 
 - The old `packages/jw3-cli` and `supabase/functions/mcp-server` paths in
-  early notes are stale: real paths are `~/Desktop/jw3-mcp-cli/cli/src`
-  and `~/Desktop/jw3-mcp-cli/edge-functions/mcp-server`.
+  early notes are stale: real paths in the public repo are
+  `cli/src` and `edge-functions/mcp-server`.
 - Combined SL+TP attach rejects on isolated margin — fall back to
   `jw3_exits` TP-only plus a kill watch, and re-check on `jw3_positions`.
 - First `analyze` after a deploy can cold-start and time out — retry once
